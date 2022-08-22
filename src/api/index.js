@@ -1,4 +1,4 @@
-const API_URL = `http://www.omdbapi.com/?i=tt3896198&apikey=${process.env.API_KEY}`
+const API_URL = `http://www.omdbapi.com/?i=tt3896198&apikey=${process.env.REACT_APP_API_KEY}`
 
 
 const getMovie = async (title, setMovies) => {
