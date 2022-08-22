@@ -1,23 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import MovieCard from './components/MovieCard'
+import Search from './components/Search';
+
+import { useEffect, useState } from 'react';
+import { getMovie } from './api'
+
+
 
 function App() {
+
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    getMovie("Dragon Ball" , setMovies);
+  }, [])
+
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1>Simple Movie App</h1>
+      <Search state={ setMovies } />
+      {movies ? 
+        <div className='container'>
+          {movies.map((movie)=>(
+            <MovieCard movie={movie} />
+          ))}
+        </div> :
+        <div className='empty'>
+            <h2>Not Movies Found</h2>
+        </div>
+      }
     </div>
   );
 }
